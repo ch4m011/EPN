@@ -1,0 +1,1422 @@
+/* =========================================
+   SISTEMA DE ASISTENCIAS
+   E.E.S.T. N.º 5
+========================================= */
+
+/* =========================================
+   CONFIGURACIÓN GENERAL
+========================================= */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+
+[hidden] {
+  display: none !important;
+}
+
+
+body {
+  font-family: "Segoe UI", Arial, sans-serif;
+  background: #f2f5f9;
+  color: #1d2733;
+}
+
+.dropdown{
+  position:relative
+}
+
+.dropdown-content {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  z-index: 10;
+  display: flex;
+  min-width: 190px;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.45rem;
+  padding: 0.75rem;
+  border-radius: 6px;
+  background: #fff;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.dropdown-content .usuario-actual {
+  padding: 0.35rem 0.5rem;
+  color: #1d2733;
+}
+
+.menu-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+.subtitulo-barra{
+  text-decoration: none;
+  color: #9aa6bb;
+}
+
+.subtitulo-barra:hover{
+  color: #22d3ee;
+}
+
+.menu-chevron {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: translateY(-2px) rotate(45deg);
+}
+
+.menu-toggle[aria-expanded="true"] .menu-chevron {
+  transform: translateY(2px) rotate(225deg);
+}
+
+
+
+.Botonselector {
+  width: 100%;
+  height: 38px;
+
+  padding: 0.55rem 0.7rem;
+
+  margin-bottom: 1rem;
+
+  background-color: white;
+  color: #222;
+
+  border: 1px solid #777;
+
+  border-radius: 6px;
+
+  font-size: 15px;
+
+  font-family: Arial, sans-serif;
+
+  cursor: pointer;
+
+  outline: none;
+
+  transition: 0.2s;
+}
+
+
+.Botonselector:hover {
+  border-color: #203F73;
+}
+
+
+.Botonselector:focus {
+  border-color: #203F73;
+
+  box-shadow:
+    0 0 0 2px rgba(32, 63, 115, 0.15);
+}
+
+
+/* =========================================
+   BARRA SUPERIOR
+========================================= */
+
+.barra {
+  background: #0B0F19;
+
+  color: #fff;
+
+  padding: 0.9rem 2rem;
+
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  border-bottom: 1px solid rgba(139, 92, 246, 0.35);
+}
+
+
+/* Logo */
+
+.logo-barra {
+  display: flex;
+
+  align-items: center;
+
+  gap: 10px;
+}
+
+
+.Logobarra {
+  width: 55px;
+
+  height: 55px;
+
+  object-fit: contain;
+}
+
+
+/* Texto */
+
+.texto-barra {
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: center;
+}
+
+
+.texto-barra h1 {
+  font-size: 1.1rem;
+
+  font-weight: 600;
+
+  letter-spacing: 0.2px;
+
+  margin: 0;
+}
+
+
+.subtitulo-barra {
+  font-size: 0.78rem;
+
+  opacity: 0.8;
+
+  margin: 2px 0 0;
+}
+
+
+/* Navegación */
+
+.barra nav {
+  display: flex;
+
+  align-items: center;
+
+  gap: 1.5rem;
+}
+
+
+/* =========================================
+   CONTENIDO
+========================================= */
+
+.contenido {
+  max-width: 1100px;
+
+  margin: 1.6rem auto;
+
+  padding: 0 1rem;
+}
+
+
+/* =========================================
+   FILTROS
+========================================= */
+
+.filtros {
+  background: #fff;
+
+  border-radius: 10px;
+
+  padding: 1rem 1.2rem;
+
+  display: flex;
+
+  gap: 1rem;
+
+  align-items: flex-end;
+
+  flex-wrap: wrap;
+
+  box-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.06);
+
+  margin-bottom: 1.4rem;
+}
+
+
+.campo {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 0.3rem;
+}
+
+
+.campo label {
+  font-size: 0.8rem;
+
+  color: #555;
+}
+
+
+.campo select,
+.campo input {
+  padding: 0.5rem 0.6rem;
+
+  border: 1px solid #c8d1dc;
+
+  border-radius: 6px;
+
+  font-size: 0.95rem;
+
+  min-width: 150px;
+}
+
+
+/* =========================================
+  TABLA
+========================================= */
+
+.tabla-contenedor {
+  width: 100%;
+
+  overflow-x: auto;
+
+  background: #fff;
+
+  border-radius: 10px;
+
+  box-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+
+.tabla {
+  width: 100%;
+
+  border-collapse: collapse;
+
+  background: #fff;
+
+  border-radius: 10px;
+
+  overflow: hidden;
+}
+
+
+/* ENCABEZADOS */
+
+.tabla th {
+  background: #e8eef7;
+
+  color: #1f3864;
+
+  text-align: left;
+
+  padding: 0.6rem 0.8rem;
+
+  font-size: 0.85rem;
+
+  font-weight: 600;
+
+  vertical-align: middle;
+}
+
+/* CELDAS */
+
+.tabla td {
+  padding: 0.55rem 0.8rem;
+
+  border-top: 1px solid #eef1f5;
+
+  font-size: 0.92rem;
+
+  vertical-align: middle;
+}
+
+
+.tabla tr:hover td {
+  background: #f7fafd;
+}
+
+
+/* =========================================
+   ESTADOS
+========================================= */
+
+.estado-opciones {
+  display: flex;
+
+  gap: 0.8rem;
+
+  align-items: center;
+
+  flex-wrap: wrap;
+}
+
+
+.estado-opciones label {
+  font-size: 0.82rem;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 0.3rem;
+
+  cursor: pointer;
+
+  white-space: nowrap;
+}
+
+
+/* =========================================
+   MOTIVOS
+========================================= */
+
+.motivo {
+  width: 100%;
+
+  padding: 0.45rem 0.5rem;
+
+  border: 1px solid #999;
+
+  border-radius: 4px;
+
+  font-size: 0.85rem;
+
+  outline: none;
+}
+
+
+.motivo:focus {
+  border-color: #1f3864;
+
+  box-shadow:
+    0 0 0 2px rgba(31, 56, 100, 0.1);
+}
+
+
+/* =========================================
+   CELDA DE JUSTIFICACIÓN (tabla de asistencias)
+========================================= */
+
+.celda-justificacion {
+  min-width: 190px;
+
+  max-width: 240px;
+}
+
+
+.sin-justificacion {
+  color: #99a2ad;
+}
+
+
+.resumen-justificacion {
+  font-size: 0.85rem;
+
+  color: #333;
+
+  overflow: hidden;
+
+  text-overflow: ellipsis;
+
+  white-space: nowrap;
+
+  max-width: 220px;
+}
+
+
+.etiqueta-pdf {
+  display: inline-block;
+
+  margin-top: 0.15rem;
+
+  font-size: 0.75rem;
+
+  color: #1f3864;
+}
+
+
+.meta-justificacion {
+  display: block;
+
+  margin-top: 0.15rem;
+
+  font-size: 0.72rem;
+
+  color: #7a8494;
+}
+
+
+.boton-editar-justificacion {
+  display: inline-block;
+
+  margin-top: 0.35rem;
+
+  background: none;
+
+  border: 1px solid #c8d1dc;
+
+  border-radius: 6px;
+
+  padding: 0.2rem 0.5rem;
+
+  font-size: 0.72rem;
+
+  color: #1f3864;
+
+  cursor: pointer;
+}
+
+
+.boton-editar-justificacion:hover {
+  background: #e8eef7;
+}
+
+
+/* =========================================
+   MODAL DE JUSTIFICACIÓN
+========================================= */
+
+.popup-justificacion {
+  width: min(440px, 92vw);
+
+  text-align: left;
+}
+
+
+.popup-justificacion h3 {
+  color: #1f3864;
+
+  margin-bottom: 0.3rem;
+}
+
+
+.justificacion-alumno {
+  font-size: 0.85rem;
+
+  color: #555;
+
+  margin-bottom: 1rem;
+}
+
+
+.popup-justificacion textarea {
+  width: 100%;
+
+  padding: 0.5rem 0.6rem;
+
+  border: 1px solid #c8d1dc;
+
+  border-radius: 6px;
+
+  font-size: 0.9rem;
+
+  font-family: inherit;
+
+  resize: vertical;
+}
+
+
+.fila-certificado {
+  display: flex;
+
+  align-items: center;
+
+  gap: 0.6rem;
+
+  flex-wrap: wrap;
+}
+
+
+.justificacion-metadatos {
+  margin-top: 0.9rem;
+
+  padding: 0.6rem 0.7rem;
+
+  background: #f7f9fc;
+
+  border-radius: 8px;
+
+  font-size: 0.78rem;
+
+  color: #555;
+}
+
+
+.justificacion-metadatos p {
+  margin: 0;
+}
+
+
+.popup-justificacion .acciones {
+  display: flex;
+
+  justify-content: flex-end;
+
+  gap: 0.6rem;
+
+  margin-top: 1.2rem;
+}
+
+
+/* =========================================
+   CERTIFICADOS PDF
+========================================= */
+
+/* Encabezado de certificado */
+
+.th-certificado {
+  text-align: center !important;
+
+  vertical-align: middle;
+}
+
+
+.titulo-certificado {
+  display: block;
+
+  margin-bottom: 0.35rem;
+}
+
+
+/* Botón PDF */
+
+.boton-pdf {
+  display: inline-block;
+
+  background: #1f3864;
+
+  color: #fff;
+
+  padding: 0.4rem 0.65rem;
+
+  border-radius: 6px;
+
+  font-size: 0.78rem;
+
+  font-weight: 500;
+
+  cursor: pointer;
+
+  text-align: center;
+
+  white-space: nowrap;
+
+  transition: 0.2s;
+}
+
+
+.boton-pdf:hover {
+  background: #2e5aa8;
+}
+
+
+/* Celda de certificado */
+
+.celda-certificado {
+  text-align: center;
+
+  vertical-align: middle;
+}
+
+
+/* Botón por alumno */
+
+.boton-subir-pdf {
+  display: inline-block;
+
+  background: #1f3864;
+
+  color: #fff;
+
+  padding: 0.4rem 0.65rem;
+
+  border-radius: 6px;
+
+  font-size: 0.78rem;
+
+  cursor: pointer;
+
+  white-space: nowrap;
+
+  transition: 0.2s;
+}
+
+
+.boton-subir-pdf:hover {
+  background: #2e5aa8;
+}
+
+
+.boton-eliminar-pdf {
+  border: 0;
+  background: transparent;
+  color: #a12622;
+  font-size: 0.78rem;
+  cursor: pointer;
+}
+
+
+.boton-eliminar-pdf:hover {
+  text-decoration: underline;
+}
+
+
+/* Nombre del archivo */
+
+.nombre-certificado {
+  display: block;
+
+  margin-top: 0.3rem;
+
+  font-size: 0.72rem;
+
+  color: #555;
+
+  max-width: 140px;
+
+  margin-left: auto;
+
+  margin-right: auto;
+
+  overflow: hidden;
+
+  text-overflow: ellipsis;
+
+  white-space: nowrap;
+}
+
+
+/* =========================================
+   BOTONES
+========================================= */
+
+.boton {
+  background: #33105a;
+
+  color: #fff;
+
+  border: none;
+
+  border-radius: 6px;
+
+  padding: 0.55rem 1rem;
+
+  font-size: 0.92rem;
+
+  cursor: pointer;
+
+  text-decoration: none;
+
+  display: inline-block;
+}
+
+
+.boton:hover {
+  background: #2e5aa8;
+}
+
+
+.boton.secundario {
+  background: #e8eef7;
+
+  color: #1f3864;
+}
+
+
+.boton.secundario:hover {
+  background: #d5e0f0;
+}
+
+
+.boton.peligro {
+  border-radius: 6px;
+
+  padding: 0.55rem 1rem;
+
+  font-size: 0.92rem;
+
+  cursor: pointer;
+
+  text-decoration: none;
+
+  display: inline-block;
+  background: #b3261e;
+}
+
+
+.boton.peligro:hover {
+  background: #d13a31;
+}
+
+
+.boton.chico {
+  padding: 0.3rem 0.6rem;
+
+  font-size: 0.8rem;
+}
+
+
+/* =========================================
+   ACCIONES
+========================================= */
+
+.acciones {
+  margin-top: 1rem;
+
+  display: flex;
+
+  gap: 0.8rem;
+
+  justify-content: flex-end;
+
+  flex-wrap: wrap;
+}
+
+/* =========================================
+   REPORTE DE INASISTENCIAS
+========================================= */
+
+.resumen-inasistencias {
+  background: #fff;
+  border-radius: 10px;
+  padding: 1rem 1.2rem;
+  margin-bottom: 1.4rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.resumen-inasistencias h2 {
+  color: #1f3864;
+  font-size: 1.1rem;
+  margin-bottom: 0.35rem;
+}
+
+.resumen-inasistencias p {
+  color: #555;
+  font-size: 0.9rem;
+}
+
+.configuracion-umbral {
+  display: flex;
+  align-items: end;
+  gap: 0.7rem;
+  flex-wrap: wrap;
+}
+
+.configuracion-umbral input {
+  width: 100px;
+  padding: 0.5rem 0.6rem;
+  border: 1px solid #c8d1dc;
+  border-radius: 6px;
+  font-size: 0.95rem;
+}
+
+.estado-alerta {
+  color: #9b1c1c;
+  font-weight: 600;
+}
+
+.estado-sin-alerta {
+  color: #2b6a3f;
+}
+
+
+/* =========================================
+   POPUP
+========================================= */
+
+.popup-fondo {
+  position: fixed;
+
+  inset: 0;
+
+  background: rgba(0, 0, 0, 0.45);
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  z-index: 50;
+}
+
+
+.popup {
+  background: #fff;
+
+  border-radius: 10px;
+
+  padding: 1.6rem 1.8rem;
+
+  width: min(380px, 90vw);
+
+  text-align: center;
+
+  box-shadow:
+    0 16px 40px rgba(0, 0, 0, 0.3);
+}
+
+
+.popup p {
+  margin-bottom: 1.2rem;
+
+  font-size: 0.98rem;
+}
+
+
+/* Resumen de conteos dentro del popup de guardado */
+
+.popup-resumen {
+  display: grid;
+
+  grid-template-columns: repeat(2, 1fr);
+
+  gap: 0.6rem;
+
+  margin-bottom: 1.2rem;
+}
+
+
+.popup-resumen-item {
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  padding: 0.55rem 0.4rem;
+
+  border-radius: 8px;
+
+  background: #f7fafd;
+
+  border: 1px solid #e8eef7;
+}
+
+
+.popup-resumen-item strong {
+  font-size: 1.4rem;
+
+  line-height: 1.2;
+}
+
+
+.popup-resumen-item span {
+  font-size: 0.78rem;
+
+  color: #626b78;
+}
+
+
+.resumen-presente strong {
+  color: #2b6a3f;
+}
+
+
+.resumen-ausente strong {
+  color: #9b1c1c;
+}
+
+
+.resumen-justificado strong {
+  color: #1f3864;
+}
+
+
+.resumen-tardanza strong {
+  color: #8a5a00;
+}
+
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 800px) {
+
+  .barra {
+    flex-direction: column;
+
+    gap: 1rem;
+
+    align-items: flex-start;
+  }
+
+
+  .barra nav {
+    width: 100%;
+
+    justify-content: flex-end;
+  }
+
+
+  .contenido {
+    padding: 0 0.5rem;
+  }
+
+}
+
+/* REPORTE GLOBAL */
+:root {
+  --color-1: #ff6b6b;
+  --color-2: #4ecdc4;
+  --color-3: #ffe66d;
+}
+
+/* Gráfico */
+.grafico {
+  margin-top: 20px;
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+}
+
+.grafico svg {
+  transform: rotate(-90deg); /* Rota el círculo para que empiece desde arriba */
+  border-radius: 50%;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  width: 300px;
+  height: 300px;
+}
+
+/* Leyenda del reporte */
+.legend {
+  margin-top: 20px;
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 14px;
+}
+
+.bullet {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+/* Colores de las viñetas */
+.bullet-color-1 {
+  background: var(--color-1);
+}
+.bullet-color-2 {
+  background: var(--color-2);
+}
+.bullet-color-3 {
+  background: var(--color-3);
+}
+
+.reporte-global .grafico svg {
+  width: min(300px, 72vw);
+  height: auto;
+  aspect-ratio: 1;
+}
+
+.reporte-global .legend {
+  flex-wrap: wrap;
+}
+
+.reporte-global .filtros .campo {
+  flex: 1 1 180px;
+  min-width: 0;
+}
+
+.reporte-global .filtros select,
+.reporte-global .filtros input {
+  width: 100%;
+  min-width: 0;
+}
+
+.reporte-global .tabla {
+  min-width: 720px;
+}
+
+@media (max-width: 600px) {
+  .reporte-global {
+    margin-top: 1rem;
+  }
+
+  .reporte-global .grafico svg {
+    width: min(240px, 72vw);
+  }
+
+  .reporte-global .legend {
+    align-items: flex-start;
+    flex-direction: column;
+    width: fit-content;
+    margin: 1rem auto 0;
+  }
+
+  .reporte-global .filtros {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 420px) {
+  .reporte-global .filtros {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* =========================================
+   ADMIN: GESTIÓN DE ALUMNOS (modelo G5)
+   Los filtros en grilla se aplican solo a esta pantalla.
+========================================= */
+
+.pagina-alumnos .campo {
+  min-width: 0;
+}
+
+.pagina-alumnos .campo select,
+.pagina-alumnos .campo input {
+  width: 100%;
+  min-width: 0;
+  height: 38px;
+}
+
+/* AGREGAR ALUMNO */
+.pagina-alumnos > .panel > .filtros {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr)) auto;
+  align-items: end;
+}
+
+/* BUSCAR ALUMNO */
+.pagina-alumnos > .filtros {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  align-items: end;
+}
+
+/* Adaptación a pantallas medianas */
+@media (max-width: 800px) {
+  .pagina-alumnos > .panel > .filtros,
+  .pagina-alumnos > .filtros {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* Adaptación a celulares */
+@media (max-width: 480px) {
+  .pagina-alumnos > .panel > .filtros,
+  .pagina-alumnos > .filtros {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* POPUP DE EDICIÓN DE ALUMNOS */
+.popup-editar {
+  width: min(460px, calc(100% - 32px));
+  max-width: 460px;
+  max-height: calc(100vh - 40px);
+  overflow-y: auto;
+  box-sizing: border-box;
+  padding: 28px;
+  text-align: left;
+}
+
+/* Título */
+.popup-editar h2 {
+  text-align: center;
+  font-size: 25px;
+  margin: 0 0 24px;
+}
+
+/* Formulario */
+.formulario-edicion {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  width: 100%;
+}
+
+/* Cada campo */
+.campo-edicion {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+
+/* Etiquetas */
+.campo-edicion label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+}
+
+/* Campos de entrada */
+.campo-edicion input {
+  width: 100%;
+  min-width: 0;
+  height: 40px;
+  padding: 0 10px;
+  box-sizing: border-box;
+  border: 1px solid #b8bec8;
+  border-radius: 6px;
+  background: #fff;
+  color: #222;
+  font-family: Arial, sans-serif;
+  font-size: 15px;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+/* Al seleccionar un campo */
+.campo-edicion input:focus {
+  border-color: #203f73;
+  box-shadow: 0 0 0 3px rgba(32, 63, 115, 0.15);
+}
+
+/* Botones */
+.acciones-popup {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+/* Popup de edición */
+#popupEditar {
+  z-index: 1000;
+}
+
+/* Popup de errores y mensajes */
+#popup {
+  z-index: 1100;
+}
+
+/* Adaptación para celulares "BAUTI" */
+@media (max-width: 480px) {
+  .popup-editar {
+    padding: 22px;
+  }
+  .formulario-edicion {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .acciones-popup {
+    flex-direction: column;
+  }
+  .acciones-popup .boton {
+    width: 100%;
+  }
+}
+
+
+/* =========================================
+   ADMIN: GESTIÓN DE MATERIAS
+========================================= */
+.pagina-materias .campo {
+  max-width: 320px;
+}
+.pagina-materias .campo select {
+  width: 100%;
+}
+.pagina-materias > .panel:first-of-type .campo:nth-child(3) {
+  margin-left: auto;
+}
+.pagina-materias .materias-boton-agregar {
+  margin-left: 0;
+}
+.ayuda-materias {
+  margin-top: 0.8rem;
+  color: #626b78;
+  font-size: 0.9rem;
+}
+.pagina-materias .tabla {
+  min-width: 420px;
+}
+.pagina-materias .tabla td:last-child {
+  white-space: nowrap;
+}
+
+.popup-materia {
+  width: min(420px, calc(100% - 32px));
+  box-sizing: border-box;
+}
+.popup-materia h2 {
+  margin: 0 0 12px;
+  font-size: 22px;
+}
+.popup-materia p {
+  margin-bottom: 16px;
+}
+.popup-materia-input {
+  width: 100%;
+  height: 40px;
+  padding: 0 10px;
+  box-sizing: border-box;
+  border: 1px solid #b8bec8;
+  border-radius: 6px;
+  background: #fff;
+  color: #222;
+  font-family: Arial, sans-serif;
+  font-size: 15px;
+  outline: none;
+  margin-bottom: 4px;
+}
+.popup-materia-input:focus {
+  border-color: #203f73;
+  box-shadow: 0 0 0 3px rgba(32, 63, 115, 0.15);
+}
+
+.faq {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+/* =========================================
+   NAVBAR MINIMALISTA
+   (enlaces como texto limpio, sin cajas de color)
+========================================= */
+
+.barra nav .boton {
+  background: transparent;
+
+  color: #cbd5e1;
+
+  padding: 0.5rem 0.2rem;
+
+  border: none;
+  border-bottom: 2px solid transparent;
+  border-radius: 0;
+
+  font-size: 0.92rem;
+  font-weight: 500;
+
+  white-space: nowrap;
+
+  transition: color 0.2s, border-color 0.2s, background 0.2s;
+}
+
+.barra nav {
+  flex-wrap: wrap;
+
+  justify-content: flex-end;
+
+  row-gap: 0.4rem;
+}
+
+.logo-barra {
+  flex-shrink: 0;
+}
+
+.barra nav .boton:hover,
+.barra nav .boton:focus-visible {
+  background: transparent;
+
+  color: #ffffff;
+
+  border-bottom-color: #22d3ee;
+
+  outline: none;
+}
+
+.barra nav .boton.peligro {
+  color: #ff9a93;
+
+  padding: 0.45rem 1rem;
+
+  border: 1px solid rgba(255, 154, 147, 0.45);
+  border-radius: 8px;
+
+  background: transparent;
+}
+
+.barra nav .boton.peligro:hover,
+.barra nav .boton.peligro:focus-visible {
+  background: #b3261e;
+
+  color: #ffffff;
+
+  border-color: #b3261e;
+}
+
+.barra nav .usuario-actual {
+  padding: 0.2rem 0.75rem;
+
+  border: 1px solid rgba(34, 211, 238, 0.4);
+  border-radius: 999px;
+
+  font-size: 0.78rem;
+  font-weight: 600;
+
+  color: #22d3ee;
+}
+
+.barra nav .usuario-actual:empty {
+  display: none;
+}
+
+@media (max-width: 800px) {
+
+  .barra {
+    padding: 0.9rem 1rem;
+  }
+
+  .barra nav {
+    flex-wrap: wrap;
+
+    gap: 0.5rem 1.25rem;
+  }
+
+}
+
+
+/* Enlace del colegio en la barra (algunas páginas lo traen con estilo en línea) */
+.texto-barra a {
+  color: #9aa6bb !important;
+
+  font-size: 0.78rem;
+
+  text-decoration: none;
+}
+
+.texto-barra a:hover {
+  color: #22d3ee !important;
+}
+
+
+/* =========================================
+   POPUP "JUSTIFICAR FALTA"
+   El botón "Subir PDF" quedaba con texto oscuro (lo pisaba
+   `.campo label`) sobre fondo oscuro: ahora texto blanco.
+========================================= */
+
+.popup-justificacion .boton-subir-pdf {
+  background: #5b21b6;
+
+  color: #ffffff;
+
+  padding: 0.5rem 0.9rem;
+
+  border-radius: 8px;
+
+  font-size: 0.85rem;
+
+  font-weight: 600;
+}
+
+.popup-justificacion .boton-subir-pdf:hover {
+  background: #7c3aed;
+
+  color: #ffffff;
+}
+
+.popup-justificacion .boton.peligro {
+  color: #ffffff;
+
+  padding: 0.5rem 0.9rem;
+
+  font-size: 0.85rem;
+}

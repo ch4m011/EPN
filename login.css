@@ -1,0 +1,483 @@
+/* =========================================
+   LOGIN / REGISTER
+   E.E.S.T. N.º 5 - Sistema de Asistencias
+   ========================================================
+   Este archivo contiene TODO lo necesario para las pantallas
+   de "login.html" y "register.html" (split-screen: panel
+   del logo + panel con el formulario), con tema oscuro
+   (#0B0F19) para que el logo violeta/cian resalte.
+
+   Requiere que la página también incluya "estilos.css" antes
+   que este archivo, ya que de ahí toma el reset general
+   (*, [hidden], body).
+========================================= */
+
+
+/* ---------- Fondo de la página ---------- */
+
+.fondo-login {
+  min-height: 100vh;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 2rem 1rem;
+
+  background:
+    radial-gradient(60% 50% at 15% 10%, rgba(124, 58, 237, 0.22), transparent 70%),
+    radial-gradient(50% 45% at 90% 95%, rgba(34, 211, 238, 0.14), transparent 70%),
+    #0B0F19;
+}
+
+
+/* ---------- Contenedor general: panel azul + panel blanco ---------- */
+
+.auth-contenedor {
+  width: min(920px, 100%);
+
+  min-height: 560px;
+
+  display: flex;
+
+  background: #111827;
+
+  border: 1px solid rgba(139, 92, 246, 0.28);
+
+  border-radius: 22px;
+
+  overflow: hidden;
+
+  box-shadow:
+    0 25px 60px rgba(0, 0, 0, 0.55),
+    0 0 40px rgba(124, 58, 237, 0.12);
+}
+
+
+/* ---------- Panel izquierdo (azul) ---------- */
+
+.auth-panel-azul {
+  position: relative;
+
+  flex: 1 1 45%;
+
+  min-width: 0;
+
+  overflow: hidden;
+
+  padding: 2.6rem 2.4rem;
+
+  display: flex;
+  align-items: center;
+
+  background:
+    radial-gradient(70% 55% at 30% 30%, rgba(124, 58, 237, 0.30), transparent 70%),
+    radial-gradient(60% 50% at 85% 90%, rgba(34, 211, 238, 0.16), transparent 70%),
+    #0B0F19;
+
+  border-right: 1px solid rgba(139, 92, 246, 0.22);
+
+  color: #f1f5f9;
+}
+
+
+.auth-panel-azul .circulo {
+  position: absolute;
+
+  border-radius: 50%;
+
+  background: radial-gradient(
+    circle at 30% 30%,
+    rgba(139, 92, 246, 0.22),
+    rgba(139, 92, 246, 0.02) 70%
+  );
+
+  pointer-events: none;
+}
+
+
+.circulo-1 {
+  width: 260px;
+  height: 260px;
+
+  left: -90px;
+  bottom: -100px;
+}
+
+
+.circulo-2 {
+  width: 160px;
+  height: 160px;
+
+  right: -50px;
+  top: -60px;
+
+  background: radial-gradient(
+    circle at 30% 30%,
+    rgba(34, 211, 238, 0.22),
+    rgba(34, 211, 238, 0.02) 70%
+  ) !important;
+}
+
+
+.auth-panel-contenido {
+  position: relative;
+  z-index: 1;
+}
+
+
+.auth-logo {
+  width: 120px;
+  height: 120px;
+
+  object-fit: contain;
+
+  margin-bottom: 1.2rem;
+
+  filter:
+    drop-shadow(0 0 18px rgba(139, 92, 246, 0.55))
+    drop-shadow(0 4px 10px rgba(0, 0, 0, 0.4));
+}
+
+
+.auth-panel-contenido h2 {
+  font-size: 1.9rem;
+
+  font-weight: 800;
+
+  letter-spacing: 0.5px;
+
+  color: #ffffff;
+
+  margin-bottom: 0.4rem;
+}
+
+
+.auth-panel-subtitulo {
+  font-size: 1rem;
+
+  font-weight: 600;
+
+  color: #22d3ee;
+
+  margin-bottom: 0.9rem;
+}
+
+
+.auth-panel-texto {
+  font-size: 0.9rem;
+
+  line-height: 1.6;
+
+  color: #b6c0d3;
+
+  max-width: 320px;
+}
+
+
+/* ---------- Panel derecho (blanco / formulario) ---------- */
+
+.auth-panel-blanco {
+  flex: 1 1 55%;
+
+  min-width: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 2.4rem 2rem;
+
+  background: #111827;
+}
+
+
+.tarjeta-login {
+  width: min(360px, 100%);
+}
+
+
+.tarjeta-login h1 {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: #f8fafc;
+}
+
+
+.subtitulo {
+  color: #a3aec2;
+
+  margin: 0.3rem 0 1.6rem;
+
+  font-size: 0.9rem;
+}
+
+
+/* ---------- Campos del formulario ---------- */
+
+.campo-auth {
+  margin-bottom: 1.1rem;
+}
+
+
+.campo-auth label {
+  display: block;
+
+  font-size: 0.82rem;
+
+  font-weight: 600;
+
+  margin-bottom: 0.35rem;
+
+  color: #d3dbe8;
+}
+
+
+.campo-auth input {
+  width: 100%;
+
+  padding: 0.7rem 0.9rem;
+
+  border: 1px solid #2f3a52;
+
+  border-radius: 8px;
+
+  font-size: 0.95rem;
+
+  color: #f1f5f9;
+
+  background: #0B0F19;
+
+  caret-color: #22d3ee;
+
+  transition: 0.2s;
+}
+
+
+.campo-auth input::placeholder {
+  color: #8793a8;
+}
+
+
+.campo-auth input:focus {
+  outline: none;
+
+  border-color: #22d3ee;
+
+  background: #0d1424;
+
+  box-shadow:
+    0 0 0 3px rgba(34, 211, 238, 0.22);
+}
+
+
+.campo-auth input:-webkit-autofill,
+.campo-auth input:-webkit-autofill:hover,
+.campo-auth input:-webkit-autofill:focus {
+  -webkit-text-fill-color: #f1f5f9;
+
+  box-shadow: 0 0 0 1000px #0B0F19 inset;
+
+  caret-color: #22d3ee;
+}
+
+
+/* ---------- Botones de recuperación ---------- */
+
+#btnVerificar,
+#btnVolver {
+  display: inline-block;
+  width: calc(50% - 0.5rem);
+  height: 40px;
+  margin-top: 0.3rem;
+  padding: 0.5rem 0.7rem;
+  vertical-align: top;
+}
+
+
+#btnVerificar {
+  margin-right: 0.4rem;
+}
+
+
+/* ---------- Campo de contraseña con ícono de mostrar/ocultar ---------- */
+
+.input-password-wrapper {
+  position: relative;
+  display: block;
+  width: 100%;
+}
+
+
+.input-password-wrapper input {
+  width: 100%;
+  box-sizing: border-box;
+  padding-right: 3rem;
+}
+
+
+.boton-mostrar-password {
+  position: absolute;
+  top: 50%;
+  right: 0.5rem;
+  left: auto;
+  transform: translateY(-50%);
+  width: 28px;
+  height: 28px;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 50%;
+  background: transparent;
+  box-shadow: none;
+  outline: none;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+
+.boton-mostrar-password:hover, .boton-mostrar-password:focus, .boton-mostrar-password:active {
+  background: rgba(255, 255, 255, 0.10);
+  box-shadow: none;
+  outline: none;
+}
+
+
+.boton-mostrar-password img {
+  display: block;
+  width: 18px;
+  height: 18px;
+  opacity: 0.75;
+  filter: invert(1);
+}
+
+
+.boton-mostrar-password:hover img {
+  opacity: 1;
+}
+
+
+/* ---------- Botón principal de ingreso/registro ---------- */
+
+.Boton-ingresar {
+  width: 100%;
+  margin-top: 0.3rem;
+  padding: 0.75rem 0.7rem;
+  border: none;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #7c3aed, #4c1d95);
+  color: #ffffff;
+  font-size: 0.98rem;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  cursor: pointer;
+  transition: 0.2s;
+  box-shadow: 0 8px 22px rgba(124, 58, 237, 0.35);
+}
+
+
+.Boton-ingresar:hover {
+  filter: brightness(1.12);
+
+  transform: translateY(-1px);
+}
+
+
+.Boton-ingresar:focus-visible,
+.boton-login_register:focus-visible {
+  outline: 2px solid #22d3ee;
+
+  outline-offset: 3px;
+}
+
+
+/* ---------- Link para cambiar entre login y registro ---------- */
+
+.boton-login_register {
+  display: block;
+
+  width: 100%;
+
+  background: none;
+
+  border: none;
+
+  padding: 0;
+
+  margin-top: 1rem;
+
+  text-align: center;
+
+  font-size: 0.88rem;
+
+  color: #a3aec2;
+
+  cursor: pointer;
+}
+
+
+.boton-login_register span,
+.boton-login_register b {
+  color: #22d3ee;
+
+  font-weight: 700;
+}
+
+
+.boton-login_register:hover {
+  color: #d3dbe8;
+}
+
+
+.boton-login_register:hover span,
+.boton-login_register:hover b {
+  text-decoration: underline;
+}
+
+
+/* ---------- Mensajes de error / aviso ---------- */
+
+.mensaje-error {
+  color: #ff8f87;
+
+  font-size: 0.85rem;
+
+  margin-top: 0.8rem;
+
+  text-align: center;
+}
+
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 760px) {
+
+  .auth-contenedor {
+    flex-direction: column;
+
+    min-height: 0;
+  }
+
+  .auth-panel-azul {
+    padding: 2rem 1.6rem;
+
+    text-align: center;
+
+    justify-content: center;
+  }
+
+  .auth-panel-contenido {
+    margin: 0 auto;
+  }
+
+  .auth-panel-texto {
+    max-width: none;
+  }
+
+  .auth-panel-blanco {
+    padding: 2rem 1.4rem;
+  }
+}
